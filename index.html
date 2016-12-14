@@ -10,16 +10,31 @@
         src="https://code.jquery.com/jquery-3.1.1.js"
         integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
         <link rel="stylesheet" href="assets/css/styles.css">
         
     </head>
     <body>
         <div class="container">
-
+            <div id="map"></div>
+            <script>
+                function initMap() {
+                    var austin = {lat: 30.307182, lng: -97.755996};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                      zoom: 5,
+                      center: austin
+                    });
+                    var marker = new google.maps.Marker({
+                        position: austin,
+                        map: map
+                    });
+                }
+            </script>
         </div>
         <script src="assets/javascript/app.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
     </body>
 </html>
