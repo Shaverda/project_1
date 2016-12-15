@@ -12,23 +12,27 @@
     <script src="https://cdn.jsdelivr.net/foundation/6.2.4-rc2/foundation.min.js"></script>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4-rc2/foundation.min.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="assets/css/jquery-ui.css">
+
 </head>
 
 <body>
-    <h1> Jet Setters Roulette </h1>
-    <label>Name
-        <input type="text" placeholder=".medium-6.columns">
-    </label>
-    <label>E-mail
-        <input type="text" placeholder=".medium-6.columns">
-        <label>Select Your Starting Airport
-            <select id="select_start_airport">
-                <option class="start-airport" value="AUS">Austin, TX</option>
-                <option class="start-airport" value="redwing">Redwing</option>
-                <option class="start-airport" value="narcho">Narcho</option>
-                <option class="start-airport" value="hardball">Hardball</option>
-            </select>
+    <div class="container">
+        <h1> Jet Setters Roulette </h1>
+        <label>Name
+            <input type="text" placeholder=".medium-6.columns">
         </label>
+        <label>E-mail
+            <input type="text" placeholder=".medium-6.columns">
+            <label>Select Your Starting Airport
+                <select id="select_start_airport">
+                    <option class="start-airport" value="AUS">Austin, TX</option>
+                    <option class="start-airport" value="redwing">Redwing</option>
+                    <option class="start-airport" value="narcho">Narcho</option>
+                    <option class="start-airport" value="hardball">Hardball</option>
+                </select>
+            </label>
         <p>Date:
             <input type="text" id="datepicker">
         </p>
@@ -37,6 +41,8 @@
         <div id="map"></div>
         <script src="assets/javascript/app.js"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
+    </div>
+
 </body>
 
 </html>
