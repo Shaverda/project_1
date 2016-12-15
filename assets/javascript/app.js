@@ -1,10 +1,16 @@
-//$(document).ready(){
+var destination_options = {
+  "Atlanta, GA" : "ATL",
+  "Chicago, IL " : "ORD",
+  "Los Angeles" : "LAX",
+  
 
-var FlightRequest = {
+
+}
+var flight_request = {
   "request": {
     "slice": [
       {
-        "origin": "DCA",
+        "origin": "AUS",
         "destination": "LAX",
         "date": "2017-01-25"
       }
@@ -17,6 +23,15 @@ var FlightRequest = {
     "refundable": false
   }
 };
+
+var starting_airport;
+
+$(".submit").on("click", function(event){
+
+  starting_airport = $("#select-start-airport").val();
+  flight_request.request.slice[0].origin = starting_airport;
+
+});
 
 $.ajax({
    type: "POST",
@@ -49,4 +64,3 @@ function initMap() {
 }
 
 
-//}
