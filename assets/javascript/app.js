@@ -1,10 +1,11 @@
 var destination_options = {
   "Atlanta, GA" : "ATL",
   "Chicago, IL " : "ORD",
-  "Los Angeles" : "LAX",
-  
-
-
+  "Los Angeles, CA" : "LAX",
+  "Denver, CO"   : "DEN",
+  "New York, NY" : "JFK",
+  "San Francisco, CA" : "SFO",
+  "Charlotte, NC" : "CLT"
 }
 var flight_request = {
   "request": {
@@ -26,12 +27,18 @@ var flight_request = {
 
 var starting_airport;
 
-$(".submit").on("click", function(event){
+$("#submit").on("click", function(event){
 
   starting_airport = $("#select-start-airport").val();
   flight_request.request.slice[0].origin = starting_airport;
 
 });
+
+$( function() {
+  $( "#datepicker" ).datepicker({
+    showButtonPanel: true
+  });
+} );
 
 $.ajax({
    type: "POST",
