@@ -37,6 +37,9 @@ $("#submit").on("click", function(event){
   starting_airport = document.getElementById('select_start_airport').value;
   console.log(starting_airport);
   departure_date = $("#datepicker").val();
+  
+
+  departure_date = moment(departure_date).format('YYYY-MM-DD');
   console.log(departure_date);
 
   flight_request.request.slice[0].origin = starting_airport;
