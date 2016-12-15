@@ -1,3 +1,9 @@
+$( function() {
+  $( "#datepicker" ).datepicker({
+    showButtonPanel: true
+  });
+} );
+
 var destination_options = {
   "Atlanta, GA" : "ATL",
   "Chicago, IL " : "ORD",
@@ -19,35 +25,31 @@ var flight_request = {
     "passengers": {
       "adultCount": 1,
     },
-
     "solutions": 2,
     "refundable": false
   }
 };
 
-var starting_airport;
+var starting_airport; var departure_date;
 
 $("#submit").on("click", function(event){
 
-  starting_airport = $("#select-start-airport").val();
+  starting_airport = document.getElementById('select_start_airport').value;
+  console.log(starting_airport);
+  departure_date = $("#datepicker").val();
+  console.log(departure_date);
+
   flight_request.request.slice[0].origin = starting_airport;
+  console.log(flight_request);
 
-});
-
-$( function() {
-  $( "#datepicker" ).datepicker({
-    showButtonPanel: true
-  });
-} );
-
-$.ajax({
+  $.ajax({
    type: "POST",
    //Set up your request URL and API Key.
    url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo", 
    contentType: 'application/json', // Set Content-type: application/json
    dataType: 'json',
    // The query we want from Google QPX, This will be the variable we created in the beginning
-   data: JSON.stringify(FlightRequest),
+   data: JSON.stringify(flight_request),
    success: function (data) {
     //Once we get the result you can either send it to console or use it anywhere you like.
     console.log(JSON.stringify(data));
@@ -56,6 +58,8 @@ $.ajax({
      //Error Handling for our request
      alert("Access to Google QPX Failed.");
    }
+  });
+
 });
 
 function initMap() {
@@ -67,7 +71,6 @@ function initMap() {
   var marker = new google.maps.Marker({
       position: austin,
       map: map
-  });
-}
-
+});
+};
 
