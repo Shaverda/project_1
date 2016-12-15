@@ -4,15 +4,15 @@ $( function() {
   });
 } );
 
-var destination_options = {
-  "Atlanta, GA" : "ATL",
-  "Chicago, IL " : "ORD",
-  "Los Angeles, CA" : "LAX",
-  "Denver, CO"   : "DEN",
-  "New York, NY" : "JFK",
-  "San Francisco, CA" : "SFO",
-  "Charlotte, NC" : "CLT"
-}
+var destination_options = 
+  [["Atlanta, GA", "ATL"],
+  ["Chicago, IL " , "ORD"],
+  ["Los Angeles, CA" , "LAX"],
+  ["Denver, CO"   , "DEN"],
+  ["New York, NY" , "JFK"],
+  ["San Francisco, CA" , "SFO"],
+  ["Charlotte, NC" , "CLT"]];
+
 var flight_request = {
   "request": {
     "slice": [
@@ -35,33 +35,37 @@ var starting_airport; var departure_date;
 $("#submit").on("click", function(event){
 
   starting_airport = document.getElementById('select_start_airport').value;
-  console.log(starting_airport);
-  departure_date = $("#datepicker").val();
-  
 
+  var destination_number = Math.floor(Math.random() * (destination_options.length));
+
+  departure_date = $("#datepicker").val();
   departure_date = moment(departure_date).format('YYYY-MM-DD');
-  console.log(departure_date);
 
   flight_request.request.slice[0].origin = starting_airport;
-  console.log(flight_request);
+  flight_request.request.slice[0].date = departure_date;
+  flight_request.request.slice[0].destination = destination_options[destination_number][1]];
+
 
   $.ajax({
-   type: "POST",
-   //Set up your request URL and API Key.
-   url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo", 
-   contentType: 'application/json', // Set Content-type: application/json
-   dataType: 'json',
-   // The query we want from Google QPX, This will be the variable we created in the beginning
-   data: JSON.stringify(flight_request),
-   success: function (data) {
-    //Once we get the result you can either send it to console or use it anywhere you like.
-    console.log(JSON.stringify(data));
-  },
-    error: function(){
-     //Error Handling for our request
-     alert("Access to Google QPX Failed.");
-   }
+     type: "POST",
+     //Set up your request URL and API Key.
+     url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo", 
+     contentType: 'application/json', // Set Content-type: application/json
+     dataType: 'json',
+     // The query we want from Google QPX, This will be the variable we created in the beginning
+     data: JSON.stringify(flight_request),
+     success: function (data) {
+      //Once we get the result you can either send it to console or use it anywhere you like.
+      console.log(JSON.stringify(data));
+    },
+      error: function(){
+       //Error Handling for our request
+       alert("Access to Google QPX Failed.");
+     }
   });
+
+
+
 
 });
 
