@@ -1,40 +1,46 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Jetsetters Roulette</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script
-        src="https://code.jquery.com/jquery-3.1.1.js"
-        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-        crossorigin="anonymous"></script>
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
-        <link rel="stylesheet" href="assets/css/styles.css">
-        
-    </head>
-    <body>
-        <div class="container">
-            <div id="map"></div>
-            <script>
-                function initMap() {
-                    var austin = {lat: 30.307182, lng: -97.755996};
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                      zoom: 5,
-                      center: austin
-                    });
-                    var marker = new google.maps.Marker({
-                        position: austin,
-                        map: map
-                    });
-                }
-            </script>
-        </div>
-        <script src="assets/javascript/app.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Jetsetters Roulette</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/foundation/6.2.4-rc2/foundation.min.js"></script>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4-rc2/foundation.min.css">
+</head>
+
+<body>
+    <h1> Jet Setters Roulette </h1>
+    <label>Select Your Starting Airport
+        <select id="select_start_airport">
+            <option class="start-airport" value="AUS">Austin, TX</option>
+            <option class="start-airport" value="redwing">Redwing</option>
+            <option class="start-airport" value="narcho">Narcho</option>
+            <option class="start-airport" value="hardball">Hardball</option>
+        </select>
+    </label>
+
+
+<p>Date: <input type="text" id="datepicker"></p>
+ 
+
+
+    <br>
+
+
+
+    <input type="submit" value="Submit">
+
+    <div class="container">
+        <div id="map"></div>
+    </div>
+    <script src="assets/javascript/app.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
+</body>
+
 </html>
