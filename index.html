@@ -16,32 +16,27 @@
 
 <body>
     <h1> Jet Setters Roulette </h1>
-    
-       
-            <label>Name
-                <input type="text" placeholder=".medium-6.columns">
-            </label>
-    
-      
-                <label>E-mail
-                    <input type="text" placeholder=".medium-6.columns">
-                
-            <label>Select Your Starting Airport
-                <select id="select_start_airport">
-                    <option class="start-airport" value="AUS">Austin, TX</option>
-                    <option class="start-airport" value="redwing">Redwing</option>
-                    <option class="start-airport" value="narcho">Narcho</option>
-                    <option class="start-airport" value="hardball">Hardball</option>
-                </select>
-            </label>
-            <p>Date:
-                <input type="text" id="datepicker">
-            </p>
-            <br>
-            <a href="#" id="submit" class="button round">Submit</a>
-            <div id="map"></div>
-            <script src="assets/javascript/app.js"></script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
+    <label>Name
+        <input type="text" placeholder=".medium-6.columns">
+    </label>
+    <label>E-mail
+        <input type="text" placeholder=".medium-6.columns">
+        <label>Select Your Starting Airport
+            <select id="select_start_airport">
+                <option class="start-airport" value="AUS">Austin, TX</option>
+                <option class="start-airport" value="redwing">Redwing</option>
+                <option class="start-airport" value="narcho">Narcho</option>
+                <option class="start-airport" value="hardball">Hardball</option>
+            </select>
+        </label>
+        <p>Date:
+            <input type="text" id="datepicker">
+        </p>
+        <br>
+        <a href="#" id="submit" class="button round">Submit</a>
+        <div id="map"></div>
+        <script src="assets/javascript/app.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
 </body>
 
 </html>
