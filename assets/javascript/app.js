@@ -36,6 +36,8 @@ $("#submit").on("click", function(event){
 
   starting_airport = document.getElementById('select_start_airport').value;
 
+  // console.log(starting_airport);
+
   var destination_number = Math.floor(Math.random() * (destination_options.length));
 
   departure_date = $("#datepicker").val();
@@ -43,7 +45,7 @@ $("#submit").on("click", function(event){
 
   flight_request.request.slice[0].origin = starting_airport;
   flight_request.request.slice[0].date = departure_date;
-  flight_request.request.slice[0].destination = destination_options[destination_number][1]];
+  flight_request.request.slice[0].destination = destination_options[destination_number][1];
 
 
   $.ajax({
@@ -64,20 +66,18 @@ $("#submit").on("click", function(event){
      }
   });
 
-
-
-
 });
 
-function initMap() {
-  var austin = {lat: 30.307182, lng: -97.755996};
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 5,
-    center: austin
-  });
-  var marker = new google.maps.Marker({
-      position: austin,
-      map: map
-});
-};
+
+// function initMap() {
+//   var austin = {lat: 30.307182, lng: -97.755996};
+//   var map = new google.maps.Map(document.getElementById('map'), {
+//     zoom: 5,
+//     center: austin
+//   });
+//   var marker = new google.maps.Marker({
+//       position: austin,
+//       map: map
+// });
+
 

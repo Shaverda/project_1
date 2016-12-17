@@ -1,18 +1,84 @@
+#border{
+	padding-top: 40px;
+	border: 5px solid white;
+
+}
+
+#cloud2{
+	position: absolute !important;
+	top: 182px;
+	right: -39px;
+	z-index: 1;
+	width: 261px;
+	opacity: 0.2;
+}
+
+
+body{
+	background-color:#2A62BB !important;
+}
+
+#clouds1{
+	position: absolute !important;
+	top: 141px;
+	right: 10px;
+	z-index: 1;
+	opacity: 0.6;
+
+}
+
  #map {
- 	margin-top: 20px;
-    height: 350px;
-    width: 100%;
-}
+     margin-top: 20px;
+     height: 350px;
+     width: 100%;
+ }
+ 
+ form {
+     width: 50%;
+     margin: auto auto;
+     font-family: 'Libre Franklin', sans-serif
+     font-color: blue !important;
+ }
+ 
+ .container{
+     width: 80%;
+     margin: auto auto;
+     border: 36px solid #2A62B2;
+     padding: 50px 50px;
+     background-color: #2A62A3;
+     font-size: 14px !important;
+ }
+ 
+ h1 {
+     text-align: center;
+     font-size: 5em !important;
+     color: white !important;
+    font-family: 'Poiret One', cursive !important;
+ }
 
-form {
-	width: 50%;
-	margin: auto auto;
-}
+ #roul{
+	font-family: 'Rock Salt', cursive !important;
+	margin-bottom: 60px;
 
-.container {
-	width: 80%;
-	margin: auto auto;
-}
-h1{
+ }
+ 
+ h4 {
+ 	text-align: center;
+ 	font-family: 'Libre Franklin', sans-serif !important;
+ 	
+ 
+ }
+
+#termsofuse{
+	font-size: 12px;
 	text-align: center;
 }
+
+#submit{
+	background-color: #16316B;
+}
+/*font-family: 'Quicksand', sans-serif;
+font-family: 'Amatic SC', cursive;
+font-family: 'Libre Franklin', sans-serif;
+font-family: 'Poiret One', cursive;
+font-family: 'Permanent Marker', cursive;*/
