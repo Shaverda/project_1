@@ -1,4 +1,6 @@
-  var config = {
+$('#loading-image').show();
+
+ var config = {
     apiKey: "AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo",
     authDomain: "jetsetters-866cf.firebaseapp.com",
     databaseURL: "https://jetsetters-866cf.firebaseio.com",
@@ -19,6 +21,9 @@ var destination_options =
   ["New York, NY" , "JFK"],
   ["San Francisco, CA" , "SFO"],
   ["Charlotte, NC" , "CLT"]];
+
+var destination_number = Math.floor(Math.random() * (destination_options.length));
+
 
 var flight_request = {
   "request": {
@@ -45,7 +50,6 @@ flight_options_ref.on("value", function(snapshot) {
 	email = snapshot.val().emailAddress;
 	name = snapshot.val().firstName;
 
-	var destination_number = Math.floor(Math.random() * (destination_options.length));
 
 	console.log( destination_options[destination_number][1]);
 
@@ -55,11 +59,11 @@ flight_options_ref.on("value", function(snapshot) {
 	flight_request.request.slice[0].destination = destination_options[destination_number][1];
 
 	console.log(flight_request);
-	
+
 	$.ajax({
 	 type: "POST",
 	 //Set up your request URL and API Key.
-	 url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo", 
+	 url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY", 
 	 contentType: 'application/json', // Set Content-type: application/json
 	 dataType: 'json',
 	 // The query we want from Google QPX, This will be the variable we created in the beginning
@@ -67,6 +71,12 @@ flight_options_ref.on("value", function(snapshot) {
 	 success: function (data) {
 	  //Once we get the result you can either send it to console or use it anywhere you like.
 	  console.log(JSON.stringify(data));
+
+	  console.log(data);
+      var destinationcity = data.trips.data.city[1].name;
+      console.log(JSON.stringify(destinationcity));
+      $( "#destinationHolder" ).html(destinationcity);
+      $('#loading-image').hide();
 	},
 	  error: function(){
 	   //Error Handling for our request
@@ -77,14 +87,46 @@ flight_options_ref.on("value", function(snapshot) {
 });
 
 
-function initMap() {
-	var austin = {lat: 30.307182, lng: -97.755996};
-	var map = new google.maps.Map(document.getElementById('map'), {
- 		zoom: 5,
- 		center: austin
-});
-var marker = new google.maps.Marker({
-   position: austin,
-   map: map
-});
-};
+// function initMap() {
+// 	var austin = {lat: 30.307182, lng: -97.755996};
+// 	var map = new google.maps.Map(document.getElementById('map'), {
+//  		zoom: 5,
+//  		center: austin
+// });
+// var marker = new google.maps.Marker({
+//    position: austin,
+//    map: map
+// });
+// };
+
+
+ function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 40.053950, lng: -98.866007}
+        });
+
+        var geocoder = new google.maps.Geocoder();
+
+        geocodeAddress(geocoder, map);
+      }
+
+      function geocodeAddress(geocoder, resultsMap) {
+        var address =  destination_options[destination_number][0];
+        console.log(address);
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+
+
+ // phil's api key:  AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY
+ //shelby's api key: AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo

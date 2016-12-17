@@ -27,12 +27,6 @@ body{
 
 }
 
- #map {
-     margin-top: 20px;
-     height: 350px;
-     width: 100%;
- }
- 
  form {
      width: 50%;
      margin: auto auto;
