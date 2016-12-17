@@ -43,7 +43,7 @@ body{
  .container{
      width: 80%;
      margin: auto auto;
-     border: 36px solid #2A62B2;
+     border: 36px solid #2A62D2;
      padding: 50px 50px;
      background-color: #2A62A3;
      font-size: 14px !important;
@@ -75,8 +75,21 @@ body{
 }
 
 #submit{
-	background-color: #16316B;
+  color: white;
+  outline: 10px solid #2A62A3;
+  box-shadow: 0 0 0 10px lightblue;
+  animation: 3s animateBorderTwo ease infinite;
+  margin: 15px 15px;
 }
+
+@keyframes animateBorderTwo {
+  to {
+    background-color: #2A62D2;
+    box-shadow: 0 0 0 10px #6C6F7F;
+  }
+}
+
+
 /*font-family: 'Quicksand', sans-serif;
 font-family: 'Amatic SC', cursive;
 font-family: 'Libre Franklin', sans-serif;
