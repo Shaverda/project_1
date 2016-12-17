@@ -24,14 +24,14 @@ $("#submit").on("click", function(event){
   var departure_date = $("#datepicker").val();
   departure_date = moment(departure_date).format('YYYY-MM-DD');
 
-  console.log(airport_code);
-
   flight_options_ref.set({
     firstName : name,
     emailAddress : email,
     airport : airport_code,
     date: departure_date
   });
+
+  window.location.href = 'index2.html';
 
 });
 

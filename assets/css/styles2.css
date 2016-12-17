@@ -15,6 +15,13 @@ h1{
 
 }
 
+ #map {
+     height: 350px;
+     width: 50%;
+     margin: auto auto;
+ }
+
+
 
 
 .animation-examples.two {

@@ -37,40 +37,44 @@ var flight_request = {
   }
 };
 
+var starting_airport, departure_date, email, name;
 
 flight_options_ref.on("value", function(snapshot) {
-	var starting_airport = snapshot.airport;
-	var date = snapshot.date;
-	var email = snapshot.emailAddress;
-	var name = snapshot.firstName;
-})
-// console.log(starting_airport);
+	starting_airport = snapshot.val().airport;
+	departure_date = snapshot.val().date;
+	email = snapshot.val().emailAddress;
+	name = snapshot.val().firstName;
 
-var destination_number = Math.floor(Math.random() * (destination_options.length));
+	var destination_number = Math.floor(Math.random() * (destination_options.length));
 
-flight_request.request.slice[0].origin = starting_airport;
-flight_request.request.slice[0].date = departure_date;
-flight_request.request.slice[0].destination = destination_options[destination_number][1];
+	console.log( destination_options[destination_number][1]);
 
 
-$.ajax({
- type: "POST",
- //Set up your request URL and API Key.
- url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo", 
- contentType: 'application/json', // Set Content-type: application/json
- dataType: 'json',
- // The query we want from Google QPX, This will be the variable we created in the beginning
- data: JSON.stringify(flight_request),
- success: function (data) {
-  //Once we get the result you can either send it to console or use it anywhere you like.
-  console.log(JSON.stringify(data));
-},
-  error: function(){
-   //Error Handling for our request
-   alert("Access to Google QPX Failed.");
- }
+	flight_request.request.slice[0].origin = starting_airport;
+	flight_request.request.slice[0].date = departure_date;
+	flight_request.request.slice[0].destination = destination_options[destination_number][1];
+
+	console.log(flight_request);
+	
+	$.ajax({
+	 type: "POST",
+	 //Set up your request URL and API Key.
+	 url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo", 
+	 contentType: 'application/json', // Set Content-type: application/json
+	 dataType: 'json',
+	 // The query we want from Google QPX, This will be the variable we created in the beginning
+	 data: JSON.stringify(flight_request),
+	 success: function (data) {
+	  //Once we get the result you can either send it to console or use it anywhere you like.
+	  console.log(JSON.stringify(data));
+	},
+	  error: function(){
+	   //Error Handling for our request
+	   alert("Access to Google QPX Failed.");
+	 }
+	});
+
 });
-
 
 
 function initMap() {
@@ -83,3 +87,4 @@ var marker = new google.maps.Marker({
    position: austin,
    map: map
 });
+};
