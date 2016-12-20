@@ -1,39 +1,42 @@
-body{
-
-	background-color: #2A62A3 !important;
+body {
+    background-color: #2A62A3 !important;
 }
 
-h1{
-	text-align: center;
-	color: white !important;
-	font-family: 'Poiret One', cursive !important;
+h1 {
+    text-align: center;
+    color: white !important;
+    font-weight: 700;
+    font-family: 'Poiret One', cursive !important;
 }
 
-.container{
-	border: 25px solid #2A62D2;
-	background-color: #2A62BB;
-
+#loading-image {
+  display: block;
+  margin: auto auto;
 }
 
- #map {
-     height: 350px;
-     width: 50%;
-     margin: auto auto;
- }
+.container {
+    border: 25px solid #2A62D2;
+    background-color: #2A62BB;
+}
 
+#map {
+    height: 350px;
+    width: 45%;
+    margin: auto auto;
+    padding: 50px 0px;
+}
 
 .animation-examples.two {
-  color: white;
-  outline: 10px solid #2A62A3;
-  box-shadow: 0 0 0 10px lightblue;
-  animation: 3s animateBorderTwo ease infinite;
-  margin: 15px 15px;
+    color: white;
+    outline: 10px solid #2A62A3;
+    box-shadow: 0 0 0 10px lightblue;
+    animation: 3s animateBorderTwo ease infinite;
+    margin: 15px 50px;
 }
 
 @keyframes animateBorderTwo {
-  to {
-    outline-color: #2A62D2;
-    box-shadow: 0 0 0 10px #6C6F7F;
-  }
+    to {
+        outline-color: #2A62D2;
+        box-shadow: 0 0 0 10px #6C6F7F;
+    }
 }
-

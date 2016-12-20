@@ -21,6 +21,8 @@ $("#submit").on("click", function(event){
   var name = $("#name-area").val().trim();
   var email = $("#email-area").val().trim();
   var airport_code = document.getElementById('select_start_airport').value;
+  var home = $("#select_start_airport").text();
+  console.log(home);
   var departure_date = $("#datepicker").val();
   departure_date = moment(departure_date).format('YYYY-MM-DD');
 
@@ -28,7 +30,8 @@ $("#submit").on("click", function(event){
     firstName : name,
     emailAddress : email,
     airport : airport_code,
-    date: departure_date
+    date: departure_date,
+    home_city : home
   });
 
   window.location.href = 'index2.html';

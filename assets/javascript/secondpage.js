@@ -42,13 +42,14 @@ var flight_request = {
   }
 };
 
-var starting_airport, departure_date, email, name;
+var starting_airport, departure_date, email, name, home;
 
 flight_options_ref.on("value", function(snapshot) {
 	starting_airport = snapshot.val().airport;
 	departure_date = snapshot.val().date;
 	email = snapshot.val().emailAddress;
 	name = snapshot.val().firstName;
+	home = snapshot.val().home_city;
 
 
 	console.log( destination_options[destination_number][1]);
@@ -86,24 +87,10 @@ flight_options_ref.on("value", function(snapshot) {
 
 });
 
-
-// function initMap() {
-// 	var austin = {lat: 30.307182, lng: -97.755996};
-// 	var map = new google.maps.Map(document.getElementById('map'), {
-//  		zoom: 5,
-//  		center: austin
-// });
-// var marker = new google.maps.Marker({
-//    position: austin,
-//    map: map
-// });
-// };
-
-
  function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
-          center: {lat: 40.053950, lng: -98.866007}
+          center: {lat: 40.054, lng: -98.866}
         });
 
         var geocoder = new google.maps.Geocoder();
@@ -113,6 +100,8 @@ flight_options_ref.on("value", function(snapshot) {
 
       function geocodeAddress(geocoder, resultsMap) {
         var address =  destination_options[destination_number][0];
+        var home_address = home;
+
         console.log(address);
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
