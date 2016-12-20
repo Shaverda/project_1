@@ -1,12 +1,17 @@
 body {
-    background-color: #2A62A3 !important;
+    background-color: #2A62A3;
 }
 
 h1 {
     text-align: center;
-    color: white !important;
+    color: white;
     font-weight: 700;
-    font-family: 'Poiret One', cursive !important;
+    font-family: 'Poiret One'; 
+}
+#destinationHolder {
+  font-family: cursive;
+  font-weight: 600;
+  font-size: 4rem;
 }
 
 #loading-image {

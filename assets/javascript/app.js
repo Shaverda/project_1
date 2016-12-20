@@ -21,8 +21,16 @@ $("#submit").on("click", function(event){
   var name = $("#name-area").val().trim();
   var email = $("#email-area").val().trim();
   var airport_code = document.getElementById('select_start_airport').value;
-  var home = $("#select_start_airport").text();
-  console.log(home);
+  var home;
+  var home = document.getElementById('select_start_airport').textContent;
+  // $("div[class='start-airport']").each(function() {
+  //   if (this.value === airport_code) {
+  //     home = this.textContent;
+  //   }
+  // }) 
+  //NEED A GOOD PROPER WAY TO LOG HOME ADDRESS IN ORDER TO ADD A 2ND MARKER TO MAP
+  //console.log(home);
+
   var departure_date = $("#datepicker").val();
   departure_date = moment(departure_date).format('YYYY-MM-DD');
 

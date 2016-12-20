@@ -1,4 +1,5 @@
-$('#loading-image').show();
+//FOR NOW, I JUST SET IT TO DISPLAY ONLY ONE FLIGHT =/
+//TODO: loop through arrayed items in data to find cheapest flight
 
  var config = {
     apiKey: "AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo",
@@ -37,7 +38,7 @@ var flight_request = {
     "passengers": {
       "adultCount": 1,
     },
-    "solutions": 2,
+    "solutions": 1,
     "refundable": false
   }
 };
@@ -64,7 +65,7 @@ flight_options_ref.on("value", function(snapshot) {
 	$.ajax({
 	 type: "POST",
 	 //Set up your request URL and API Key.
-	 url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY", 
+	 url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo", 
 	 contentType: 'application/json', // Set Content-type: application/json
 	 dataType: 'json',
 	 // The query we want from Google QPX, This will be the variable we created in the beginning
@@ -72,10 +73,14 @@ flight_options_ref.on("value", function(snapshot) {
 	 success: function (data) {
 	  //Once we get the result you can either send it to console or use it anywhere you like.
 	  console.log(JSON.stringify(data));
-
 	  console.log(data);
       var destinationcity = data.trips.data.city[1].name;
-      console.log(JSON.stringify(destinationcity));
+      var sales_price = data.trips.tripOption[0].saleTotal.substr(3);
+      console.log(sales_price);
+      $("#flight-price").html("Flight price: $" + sales_price);
+      var flight_info = data.trips.data.carrier[0].name + " " + data.trips.tripOption[0].slice[0].segment[0].flight.number;
+      console.log(flight_info);
+      //NEED SOME SORT OF ERROR HANDLER FOR IF THE THINGEY DOESN'T RETURN ANY FLIGHTS. OR JUST DELETE TINY ASS AIRPORTS. //console.log(JSON.stringify(destinationcity));
       $( "#destinationHolder" ).html(destinationcity);
       $('#loading-image').hide();
 	},
@@ -100,7 +105,6 @@ flight_options_ref.on("value", function(snapshot) {
 
       function geocodeAddress(geocoder, resultsMap) {
         var address =  destination_options[destination_number][0];
-        var home_address = home;
 
         console.log(address);
         geocoder.geocode({'address': address}, function(results, status) {
