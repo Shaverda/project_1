@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var flight_options_ref = database.ref("flight_options");
 
-var destination_options = [
+var destination_options = [	//hard-coded destination array of arrays w/ the city name and the airport code linked
     ["Atlanta, GA", "ATL"],
     ["Chicago, IL ", "ORD"],
     ["Los Angeles, CA", "LAX"],
@@ -25,7 +25,7 @@ var destination_options = [
 ];
 
 var destination_number = Math.floor(Math.random() * (destination_options.length));
-
+	//finds a random destination number 
 
 var flight_request = {
     "request": {
@@ -45,20 +45,17 @@ var flight_request = {
 
 var starting_airport, departure_date, email, name, home;
 
-flight_options_ref.on("value", function(snapshot) {
+flight_options_ref.on("value", function(snapshot) {	//pulls firebase values from database
     starting_airport = snapshot.val().airport;
     departure_date = snapshot.val().date;
     email = snapshot.val().emailAddress;
     name = snapshot.val().firstName;
     home = snapshot.val().home_city;
 
-    console.log(destination_options[destination_number][1]);
-
-    flight_request.request.slice[0].origin = starting_airport;
+    flight_request.request.slice[0].origin = starting_airport;	//replaces our flight request for QPX w/ firebase data values
     flight_request.request.slice[0].date = departure_date;
     flight_request.request.slice[0].destination = destination_options[destination_number][1];
 
-    console.log(flight_request);
 
     $.ajax({
         type: "POST",
@@ -72,28 +69,26 @@ flight_options_ref.on("value", function(snapshot) {
             //Once we get the result you can either send it to console or use it anywhere you like.
             console.log(JSON.stringify(data));
             console.log(data);
-            var city_obj = data.trips.data;
+            var data_obj = data.trips.data;
 
             function homepage_returner() {
                 window.location.href = 'index.html';
             }
-            if (!(city_obj.hasOwnProperty("city"))) {
-                setTimeout(homepage_returner, 5000);
-                $("#map").hide();
+            if (!(data_obj.hasOwnProperty("city"))) { //Essentially checks to see if QPX returns no flights; object returned by QPX will have no .city property if no flights were found. Handler displays error headline for 5 seconds before redirecting to home page to re-try inputs.
+                setTimeout(homepage_returner, 5000);  
+                $("#map").hide();					  
                 $("#heading_info").html("<h1 style='font-weight:500;'> Sorry. There are no flights from this location. You will be redirected to the home page, but really you should probably redirect your life. </h1>");
             }
-            var destinationcity = data.trips.data.city[1].name;
+            var destination_city = data_obj.city[1].name;
             var sales_price = data.trips.tripOption[0].saleTotal.substr(3);
-            console.log(sales_price);
-            $("#flight-price").html("Flight price: $" + sales_price);
-            var flight_info = data.trips.data.carrier[0].name + " #" + data.trips.tripOption[0].slice[0].segment[0].flight.number;
-            $("#flight-info").html("Flight information: " + flight_info);
-            var departure_time = data.trips.tripOption[0].slice[0].segment[0].leg[0].departureTime.slice(11,16);
-            console.log(departure_time);
-            $("#departure-time").html("Departure time: " + departure_time);
-            $("#departure-date").html("Departure Date: " + departure_date);
+   			var flight_info = data_obj.carrier[0].name + " #" + data.trips.tripOption[0].slice[0].segment[0].flight.number;
+   			var departure_time = data.trips.tripOption[0].slice[0].segment[0].leg[0].departureTime.slice(11,16);
 
-            $("#destinationHolder").html(destinationcity);
+            $("#flight-price").html("Flight price: $" + sales_price);
+            $("#flight-info").html("Flight information: " + flight_info);
+            $("#departure-time").html("Departure time: " + departure_time);
+            $("#departure-date").html("Departure Date: " + moment(departure_date).format('MMMM Do, YYYY'));
+            $("#destinationHolder").html(destination_city);
             $('#loading-image').hide();
         },
         error: function() {
@@ -104,7 +99,7 @@ flight_options_ref.on("value", function(snapshot) {
 
 });
 
-function initMap() {
+function initMap() {	//initializes map on page load, adding a marker to the chosen randomzied destination
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
         center: { lat: 40.054, lng: -98.866 }

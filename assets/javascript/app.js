@@ -28,7 +28,7 @@ $("#submit").on("click", function(event){
   //     home = this.textContent;
   //   }
   // }) 
-  //NEED A GOOD PROPER WAY TO LOG HOME ADDRESS IN ORDER TO ADD A 2ND MARKER TO MAP
+  // TODO: NEED A GOOD PROPER WAY TO LOG HOME ADDRESS IN ORDER TO ADD A 2ND MARKER TO MAP
   //console.log(home);
 
   var departure_date = $("#datepicker").val();
