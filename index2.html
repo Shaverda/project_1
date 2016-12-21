@@ -14,15 +14,19 @@
     <link rel="stylesheet" href="assets/css/styles2.css">
 </head>
 <body>
-	<h1> You Are Headed To... </h1>
-	<img id="loading-image" src="assets/images/wheel.svg">
-	<h1 id="destinationHolder"></h1>
+	<div id="heading_info">
+		<h1> You Are Headed To... </h1>
+		<img id="loading-image" src="assets/images/wheel.svg">
+		<h1 id="destinationHolder"></h1>
+	</div>
 	<div class="animation-examples two">
 		<div id="map">
 	    </div>
 	    <div>
-	    	<h5 id="flight-price"></h5>
-	    	<h5 id="flight-info"></h5>
+	    	<h6 id="flight-price"></h6>
+	    	<h6 id="flight-info"></h6>
+	    	<h6 id="departure-time"></h6>
+	    	<h6 id="departure-date"></h6>
 		</div>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
 		<script src="assets/javascript/secondpage.js"></script>

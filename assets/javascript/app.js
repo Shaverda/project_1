@@ -42,6 +42,8 @@ $("#submit").on("click", function(event){
     home_city : home
   });
 
+  //TODO: PROVIDE ERROR HANDLING for if user inputs weird submissions
+
   window.location.href = 'index2.html';
 
 });
