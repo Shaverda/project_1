@@ -128,5 +128,30 @@ function geocodeAddress(geocoder, resultsMap) {
 }
 
 
+
+function eventful_request(){
+   var oArgs = {
+      app_key: "hbM7xmwCJxwk2hjn",
+      q: "music",
+      where: "San Diego", 
+      "date": "2013061000-2015062000",
+      page_size: 5,
+      sort_order: "popularity",
+
+   };
+
+   EVDB.API.call("/events/search", oArgs, function(data) {
+        console.log(JSON.stringify(data));
+   		console.log(data);	
+    });
+
+}
+
+$(".eventful").on("click", function(event){
+	event.preventDefault();
+	eventful_request();
+})
+
+
 // phil's api key:  AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY
 //shelby's api key: AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo
