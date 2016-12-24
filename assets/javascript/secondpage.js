@@ -56,7 +56,6 @@ flight_options_ref.on("value", function(snapshot) {	//pulls firebase values from
     flight_request.request.slice[0].date = departure_date;
     flight_request.request.slice[0].destination = destination_options[destination_number][1];
 
-
     $.ajax({
         type: "POST",
         //Set up your request URL and API Key.
@@ -75,7 +74,7 @@ flight_options_ref.on("value", function(snapshot) {	//pulls firebase values from
                 window.location.href = 'index.html';
             }
             if (!(data_obj.hasOwnProperty("city"))) { //Essentially checks to see if QPX returns no flights; object returned by QPX will have no .city property if no flights were found. Handler displays error headline for 5 seconds before redirecting to home page to re-try inputs.
-                setTimeout(homepage_returner, 5000);  
+                setTimeout(homepage_returner, 10000);  
                 $("#map").hide();					  
                 $("#heading_info").html("<h1 style='font-weight:500;'> Sorry. There are no flights from this location. You will be redirected to the home page, but really you should probably redirect your life. </h1>");
             }
@@ -128,17 +127,22 @@ function geocodeAddress(geocoder, resultsMap) {
 }
 
 
-
 function eventful_request(){
+   var formatted_eventful_date = moment(departure_date).format('YYYYMMDD00');
+   var future_eventful_search_date = moment(departure_date).add(7, 'days').calendar();
+   future_eventful_search_date = moment(future_eventful_search_date).format('YYYYMMDD00');
+
+   var formatted_eventful_dates = formatted_eventful_dates + "-" + future_eventful_search_date;
+
    var oArgs = {
       app_key: "hbM7xmwCJxwk2hjn",
       q: "music",
-      where: "San Diego", 
-      "date": "2013061000-2015062000",
-      page_size: 5,
+      where: destination_options[destination_number][0], 
+      "date": formatted_eventful_dates,
       sort_order: "popularity",
 
    };
+
 
    EVDB.API.call("/events/search", oArgs, function(data) {
         console.log(JSON.stringify(data));
@@ -147,10 +151,8 @@ function eventful_request(){
 
 }
 
-$(".eventful").on("click", function(event){
-	event.preventDefault();
-	eventful_request();
-})
+eventful_request();
+
 
 
 // phil's api key:  AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY

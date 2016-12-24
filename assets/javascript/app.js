@@ -18,18 +18,10 @@ var flight_options_ref = database.ref("flight_options");
 
 $("#submit").on("click", function(event){
   event.preventDefault();
-  var name = $("#name-area").val().trim();
+  var name = $("#name-area").val().trim();  
   var email = $("#email-area").val().trim();
   var airport_code = document.getElementById('select_start_airport').value;
-  var home;
-  var home = document.getElementById('select_start_airport').textContent;
-  // $("div[class='start-airport']").each(function() {
-  //   if (this.value === airport_code) {
-  //     home = this.textContent;
-  //   }
-  // }) 
-  // TODO: NEED A GOOD PROPER WAY TO LOG HOME ADDRESS IN ORDER TO ADD A 2ND MARKER TO MAP
-  //console.log(home);
+  var home = $("#select_start_airport option[value="+airport_code+"]").text();
 
   var departure_date = $("#datepicker").val();
   departure_date = moment(departure_date).format('YYYY-MM-DD');

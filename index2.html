@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Destination</title>
-	<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Destination</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/3.6.3/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/foundation/6.2.4-rc2/foundation.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4-rc2/foundation.min.css">
@@ -13,27 +14,44 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Libre+Franklin|Permanent+Marker|Poiret+One|Quicksand|Rock+Salt" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/styles2.css">
     <script type="text/javascript" src="http://api.eventful.com/js/api">
-</script>
+    </script>
 </head>
-<body>
-	<div id="heading_info">
-		<h1> You Are Headed To... </h1>
-		<img id="loading-image" src="assets/images/wheel.svg">
-		<h1 id="destinationHolder"></h1>
-	</div>
-	<div class="animation-examples two">
-		<div id="map">
-	    </div>
-	    <div>
-	    	<h6 id="flight-price"></h6>
-	    	<h6 id="flight-info"></h6>
-	    	<h6 id="departure-time"></h6>
-	    	<h6 id="departure-date"></h6>
-		</div>
-		<button class="eventful button round">Button for Eventful</button>
-		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
-		<script src="assets/javascript/secondpage.js"></script>
 
-	</div>
+<body>
+    <div id="heading_info">
+        <h1> You Are Headed To... </h1>
+        <img id="loading-image" src="assets/images/wheel.svg">
+        <h1 id="destinationHolder"></h1>
+    </div>
+    <div class="animation-examples two">
+        <div id="map">
+        </div>
+        <div>
+            <h6 id="flight-price"></h6>
+            <h6 id="flight-info"></h6>
+            <h6 id="departure-time"></h6>
+            <h6 id="departure-date"></h6>
+        </div>
+        <div class="row">
+            <div class="small-9 columns small-centered">
+                <article class="event">
+                    <div class="event-date">
+                        <p class="event-month"></p>
+                        <p class="event-day"></p>
+                    </div>
+                    <div class="event-desc">
+                        <h4 class="event-desc-header"></h4>
+                        <p class="event-desc-detail"><span class="event-desc-time"></span></p>
+                        <a href="" class="rsvp button">Event Details</a>
+                    </div>
+                </article>
+                <hr>
+
+            </div>
+        </div>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo&callback=initMap"></script>
+        <script src="assets/javascript/secondpage.js"></script>
+    </div>
 </body>
+
 </html>
