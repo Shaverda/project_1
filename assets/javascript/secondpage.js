@@ -75,7 +75,7 @@ flight_options_ref.on("value", function(snapshot) { //pulls firebase values from
             }
             if (!(data_obj.hasOwnProperty("city"))) { //Essentially checks to see if QPX returns no flights; object returned by QPX will have no .city property if no flights were found. Handler displays error headline for 5 seconds before redirecting to home page to re-try inputs.
                 setTimeout(homepage_returner, 10000);
-                $("#map").hide();
+                $(".animation-examples").hide();
                 $("#heading_info").html("<h1 style='font-weight:500;'> Sorry. There are no flights from this location. You will be redirected to the home page, but really you should probably redirect your life. </h1>");
             }
             var destination_city = data_obj.city[1].name;
@@ -147,15 +147,16 @@ function eventful_request() {
     EVDB.API.call("/events/search", oArgs, function(data) {
         console.log(JSON.stringify(data));
         console.log(data);
-        for (var i = 0; i < 5; i++) {
-        	var formatted_date = moment(data.events.event[i].start_time).format('MMMM DD YY');
-        	$(".event-month").html(formatted_date.slice(0,3));
-        	$(".event-day").html(formatted_date.slice(-5, -3));
-        	$(".event-desc-header").html(data.events.event[i].title);
-
-        	$(".rsvp").attr("href", "www.google.com"); 
-        	//data.events.event[i].url
-        }
+  		var i = 0;
+    	$(".event").each(function(){
+    		var formatted_date = moment(data.events.event[i].start_time).format('MMMM DD YY');
+    		$(this).find(".event-month").html(formatted_date.slice(0,3));
+    		$(this).find(".event-day").html(formatted_date.slice(-5,-3));
+    		$(this).find(".event-desc-header").html(data.events.event[i].title);
+    		//$(this).find(".event-desc-detail").html(data.events.event[i].performers.performer.short_bio);
+    		$(this).find(".rsvp").attr("href", data.events.event[i].url);
+    		i++;
+    	});
     });
 
 
