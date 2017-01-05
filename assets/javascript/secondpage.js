@@ -1,7 +1,7 @@
 //FOR NOW, I JUST SET IT TO DISPLAY ONLY ONE FLIGHT =/
 //TODO: loop through arrayed items in data to find cheapest flight
 
-var config = {
+var config = { //firebase setup
     apiKey: "AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo",
     authDomain: "jetsetters-866cf.firebaseapp.com",
     databaseURL: "https://jetsetters-866cf.firebaseio.com",
@@ -27,7 +27,7 @@ var destination_options = [ //hard-coded destination array of arrays w/ the city
 var destination_number = Math.floor(Math.random() * (destination_options.length));
 //finds a random destination number 
 
-var flight_request = {
+var flight_request = { //object that QPX express asks to get posted to them
     "request": {
         "slice": [{
             "origin": "AUS",
@@ -38,7 +38,7 @@ var flight_request = {
         "passengers": {
             "adultCount": 1,
         },
-        "solutions": 1,
+        "solutions": 1, //TODO: Get more flights returned and iterate through them looking for the cheapest
         "refundable": false
     }
 };
@@ -68,13 +68,14 @@ flight_options_ref.on("value", function(snapshot) { //pulls firebase values from
             //Once we get the result you can either send it to console or use it anywhere you like.
             console.log(JSON.stringify(data));
             console.log(data);
-            var data_obj = data.trips.data;
 
-            function homepage_returner() {
+            function homepage_returner() { 
                 window.location.href = 'index.html';
             }
+            var data_obj = data.trips.data;
+
             if (!(data_obj.hasOwnProperty("city"))) { //Essentially checks to see if QPX returns no flights; object returned by QPX will have no .city property if no flights were found. Handler displays error headline for 5 seconds before redirecting to home page to re-try inputs.
-                setTimeout(homepage_returner, 5000);
+                setTimeout(homepage_returner, 5000);//re-directs to home page if qpx query fails.
                 $(".animation-examples").hide();
                 $("#heading_info").html("<h1 style='font-weight:500;'> Sorry. There are no flights from this location. You will be redirected to the home page, but really you should probably redirect your life. </h1>");
             }
@@ -116,21 +117,21 @@ function geocodeAddress(geocoder, resultsMap) {
     geocoder.geocode({ 'address': address }, function(results, status) {
         if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
-            var iconBase =  'https://maps.google.com/mapfiles/kml/shapes/';
+            var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
             var icon = {
-    url: "http://i83.photobucket.com/albums/j309/typically/dancing_banana_by_legoman824-d57biz.gif", // url
-    scaledSize: new google.maps.Size(80, 50), // scaled size
-    origin: new google.maps.Point(0,0), // origin
-    anchor: new google.maps.Point(0, 0) // anchor
-};
+                url: "http://i83.photobucket.com/albums/j309/typically/dancing_banana_by_legoman824-d57biz.gif",
+                scaledSize: new google.maps.Size(80, 50), 
+                origin: new google.maps.Point(0, 0), 
+                anchor: new google.maps.Point(0, 0) 
+            };
 
             var marker = new google.maps.Marker({
                 map: resultsMap,
-                 animation: google.maps.Animation.DROP,
+                animation: google.maps.Animation.DROP,
 
-                 optimized:false, // <-- required for animated gif
+                optimized: false, // <-- required for animated gif
                 position: results[0].geometry.location,
-                 icon: icon
+                icon: icon
             });
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
@@ -146,7 +147,7 @@ function eventful_request() {
 
     var formatted_eventful_dates = formatted_eventful_date + "-" + future_eventful_search_date;
 
-    var oArgs = {
+    var oArgs = {   //object that we post to eventful
         app_key: "hbM7xmwCJxwk2hjn",
         q: "music",
         where: destination_options[destination_number][0],
@@ -159,26 +160,24 @@ function eventful_request() {
     EVDB.API.call("/events/search", oArgs, function(data) {
         console.log(JSON.stringify(data));
         console.log(data);
-  		var i = 0;
-    	$(".event").each(function(){
-    		var formatted_date = moment(data.events.event[i].start_time).format('MMMM DD YY');
-    		$(this).find(".event-month").html(formatted_date.slice(0,3));
-    		$(this).find(".event-day").html(formatted_date.slice(-5,-3));
-    		$(this).find(".event-desc-header").html(data.events.event[i].title);
-    		$(this).find(".rsvp").attr("href", data.events.event[i].url);
-    		i++;
-    	});
+        var i = 0;
+        $(".event").each(function() {
+            var formatted_date = moment(data.events.event[i].start_time).format('MMMM DD YY');
+            $(this).find(".event-month").html(formatted_date.slice(0, 3));
+            $(this).find(".event-day").html(formatted_date.slice(-5, -3));
+            $(this).find(".event-desc-header").html(data.events.event[i].title);
+            $(this).find(".rsvp").attr("href", data.events.event[i].url);
+            i++;
+        });
     });
 
 }
 eventful_request();
 
-$("#fuck-off").click(function(){
+$("#fuck-off").click(function() {
     location.reload();
 
 })
 
 // phil's api key:  AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY
 //shelby's api key: AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo
-
-

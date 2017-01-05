@@ -1,10 +1,10 @@
-$( function() {
+$( function() { //calendar widget thing
   $( "#datepicker" ).datepicker({
     showButtonPanel: true
   });
 } );
 
-var config = {
+var config = {  //firebase config
   apiKey: "AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo",
   authDomain: "jetsetters-866cf.firebaseapp.com",
   databaseURL: "https://jetsetters-866cf.firebaseio.com",
@@ -26,7 +26,7 @@ $("#submit").on("click", function(event){
   var departure_date = $("#datepicker").val();
   departure_date = moment(departure_date).format('YYYY-MM-DD');
 
-  flight_options_ref.set({
+  flight_options_ref.set({  //sets values in firebase
     firstName : name,
     emailAddress : email,
     airport : airport_code,
@@ -36,7 +36,7 @@ $("#submit").on("click", function(event){
 
   //TODO: PROVIDE ERROR HANDLING for if user inputs weird submissions
 
-  window.location.href = 'index2.html';
+  window.location.href = 'index2.html'; //navigates to next page.
 
 });
 
