@@ -116,9 +116,21 @@ function geocodeAddress(geocoder, resultsMap) {
     geocoder.geocode({ 'address': address }, function(results, status) {
         if (status === 'OK') {
             resultsMap.setCenter(results[0].geometry.location);
+            var iconBase =  'https://maps.google.com/mapfiles/kml/shapes/';
+            var icon = {
+    url: "http://i83.photobucket.com/albums/j309/typically/dancing_banana_by_legoman824-d57biz.gif", // url
+    scaledSize: new google.maps.Size(80, 50), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
+};
+
             var marker = new google.maps.Marker({
                 map: resultsMap,
-                position: results[0].geometry.location
+                 animation: google.maps.Animation.DROP,
+
+                 optimized:false, // <-- required for animated gif
+                position: results[0].geometry.location,
+                 icon: icon
             });
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
@@ -153,7 +165,6 @@ function eventful_request() {
     		$(this).find(".event-month").html(formatted_date.slice(0,3));
     		$(this).find(".event-day").html(formatted_date.slice(-5,-3));
     		$(this).find(".event-desc-header").html(data.events.event[i].title);
-    		//$(this).find(".event-desc-detail").html(data.events.event[i].performers.performer.short_bio);
     		$(this).find(".rsvp").attr("href", data.events.event[i].url);
     		i++;
     	});
@@ -164,14 +175,9 @@ function eventful_request() {
 
 eventful_request();
 
-
-
-
-// initial step calc
-calc_steps();
-
-// go go go!
-timer = setInterval(updateGradient,interval_time);
+$("#fuck-off").click(function(){
+    location.reload();
+})
 
 // phil's api key:  AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY
 //shelby's api key: AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo
