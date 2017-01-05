@@ -59,7 +59,7 @@ flight_options_ref.on("value", function(snapshot) { //pulls firebase values from
     $.ajax({
         type: "POST",
         //Set up your request URL and API Key.
-        url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyBPM6wdALkjvVZGjgS0ziYqkfBjB1CzZMo",
+        url: "https://www.googleapis.com/qpxExpress/v1/trips/search?key=AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY",
         contentType: 'application/json', // Set Content-type: application/json
         dataType: 'json',
         // The query we want from Google QPX, This will be the variable we created in the beginning
@@ -74,7 +74,7 @@ flight_options_ref.on("value", function(snapshot) { //pulls firebase values from
                 window.location.href = 'index.html';
             }
             if (!(data_obj.hasOwnProperty("city"))) { //Essentially checks to see if QPX returns no flights; object returned by QPX will have no .city property if no flights were found. Handler displays error headline for 5 seconds before redirecting to home page to re-try inputs.
-                setTimeout(homepage_returner, 10000);
+                setTimeout(homepage_returner, 5000);
                 $(".animation-examples").hide();
                 $("#heading_info").html("<h1 style='font-weight:500;'> Sorry. There are no flights from this location. You will be redirected to the home page, but really you should probably redirect your life. </h1>");
             }
@@ -170,13 +170,12 @@ function eventful_request() {
     	});
     });
 
-
 }
-
 eventful_request();
 
 $("#fuck-off").click(function(){
     location.reload();
+
 })
 
 // phil's api key:  AIzaSyDyVvbCSBe7Wv70cNxYuHT_yr2qUhjMymY
