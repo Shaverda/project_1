@@ -118,8 +118,17 @@ h1 {
     text-align: center;
     padding: 10px 10px;
     background-color: #36c2e2;
-    font-size: 14px;
+    font-size: 17px;
    
 
 }
 
+#fuck-off{
+    margin: 10px 50%;
+    background-color: #fface4;
+
+}
+
+h6{
+    font-size: 20px;
+}
