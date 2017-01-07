@@ -19,17 +19,16 @@
 </head>
 
 <body>
-    <img id="cloud2" src="http://pngimg.com/upload/cloud_PNG4.png">
+    <img id="cloud2" alt="floating clouds" src="http://pngimg.com/upload/cloud_PNG4.png">
     <marquee id="plane" behavior="scroll" direction="left">
-                <img id="plane" src="http://pngimg.com/upload/plane_PNG5237.png" width="125" height="82" alt="Flying Bat">
-            </marquee>
+        <img id="plane" src="http://pngimg.com/upload/plane_PNG5237.png" width="125" height="82" alt="Flying Bat">
+    </marquee>
             
     <div class="container">
         <h1> Jet Setters  </h1>
         <h1 id="roul">Roulette</h1>
         <div id="planeheader">
-            
-            <img id="clouds1" src="http://pngimg.com/upload/cloud_PNG24.png">
+            <img id="clouds1" src="http://pngimg.com/upload/cloud_PNG24.png" alt="clouds floating">
         </div>
         <h4> Need a break from the routine?! Enter your information below and click submit. We will randomnly select a destination for you.  </h4>
         <div id="border">
@@ -41,8 +40,7 @@
                 <input type="text" class="medium-6 columns" id="email-area" placeholder="Email address">
                 <label>Select Your Starting City
                     <select id="select_start_airport">
-                        <optgroup label="Select City">
-                            </option>   <!-- Way too many hardcoded values but meh -->
+                        <optgroup label="Select City"> <!-- Way too many hardcoded values but meh -->
                             <option class="start-airport" value="ABQ">Albuquerque, NM</option>
                             <option class="start-airport" value="ESF">Alexandria, La</option>
                             <option class="start-airport" value="ANC">Anchorage, AK</option>
@@ -90,7 +88,8 @@
                             <option class="start-airport" value="ADQ">Kodiak, AK</option>
                             <option class="start-airport" value="LAN">Lansing, MI</option>
                             <option class="start-airport" value="LAS">Las Vegas, NV</option>
-                            <option class="start-airport" value="LBE">Latrobe, PA</ <option class="start-airport" value="LEX">Lexington, KY</option>
+                            <option class="start-airport" value="LBE">Latrobe, PA</option>
+                            <option class="start-airport" value="LEX">Lexington, KY</option>
                             <option class="start-airport" value="LIH">Lihue, HI</option>
                             <option class="start-airport" value="LNK">Lincoln, NE</option>
                             <option class="start-airport" value="ISP">Long Island, Islip, NY - Mac Arthur</option>
@@ -128,7 +127,6 @@
                             <option class="start-airport" value="SPI">Springfield, IL</option>
                             <option class="start-airport" value="TLH">Tallahassee, FL</option>
                             <option class="start-airport" value="TPA">Tampa International, FL</option>
-                            Regional, TN/VA</option>
                             <option class="start-airport" value="TUS">Tucson, AZ</option>
                             <option class="start-airport" value="TUL">Tulsa, OK</option>
                             <option class="start-airport" value="BWI">Washington DC - Baltimore Washington International</option>
@@ -144,8 +142,9 @@
                 </p>
                 <h6> May the odds be ever in your favor! </h6>
                 <div id="submitcontainer">
-                <a href="#" id="submit" class="button round">Submit</a>
+                    <a href="#" id="submit" class="button round">Submit</a>
                 </div>
+            </form>
         </div>
         <!--TODO: provide error handling for invalid date formats -->
         </form>
@@ -155,7 +154,7 @@
 </body>
 
 
-<div class="bg"> <!-- hard coded rather than dynamically generated because.. um.. because. -->
+<div class="bg"> 
   <div class="mountain">
     <div class="mountain-top">
       <div class="mountain-cap-1"></div>
